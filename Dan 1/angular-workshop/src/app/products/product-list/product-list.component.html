@@ -1,0 +1,13 @@
+<ul>
+  <li *ngFor="let product of productList">
+    <h3>
+      <a (click)="selectProduct(product)">{{ product.name }}</a>
+    </h3>
+    <p>Cijena: {{ product.price }} kn</p>
+  </li>
+</ul>
+
+<div *ngIf="selectedProduct">
+  <hr>
+  <product [id]="selectedProduct.id"></product>
+</div>
