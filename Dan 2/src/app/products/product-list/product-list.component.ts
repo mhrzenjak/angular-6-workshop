@@ -20,7 +20,9 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.productList = this.productService.getProducts();
+    this.productService.getProducts().subscribe(value => {
+      this.productList = value;
+    });
   }
 
   selectProduct(product: Product): void {

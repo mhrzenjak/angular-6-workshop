@@ -30,7 +30,9 @@ export class ProductComponent implements OnInit, OnChanges {
   }
 
   getProduct(id: number){
-    this.product = this.productService.getProduct(id);
+    this.productService.getProduct(id).subscribe(value => {
+      this.product = value;
+    });
   }
 
 }
