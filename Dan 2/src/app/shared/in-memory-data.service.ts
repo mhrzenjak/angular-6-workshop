@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { InMemoryDbService } from "angular-in-memory-web-api";
 import { Product } from "../products/product/product.model";
+import { User } from "../users/user/user.model";
 
 @Injectable()
 export class InMemoryDataService implements InMemoryDbService{
     productList: Array<Product>;
+    userList: Array<User>;
 
     createDb(){
 
@@ -33,8 +35,18 @@ export class InMemoryDataService implements InMemoryDbService{
             },
           );
 
+          this.userList = new Array<User>();
+          this.userList.push(
+            {id: 1, name: "Admin", joinDate: new Date(), active: true},
+            {id: 2, name: "Korisnik", joinDate: new Date(), active: true},
+            {id: 3, name: "Protjerani korisnik", joinDate: new Date(), active: false},
+          )
+
+
+
         return {
-            products: this.productList
+            products: this.productList,
+            users: this.userList
         }
     }
 }

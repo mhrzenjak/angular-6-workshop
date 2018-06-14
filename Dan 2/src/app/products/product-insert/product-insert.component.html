@@ -1,0 +1,17 @@
+<form #productForm="ngForm">
+  <p>Naziv:</p>
+  <input type="text" [(ngModel)]="product.name" name="name" #name="ngModel" required/>
+  <p *ngIf="!name.valid">Krivi unos!</p>
+  <p>Opis:</p>
+  <input type="text" [(ngModel)]="product.description" #description="ngModel" name="description" minlength="20"/>
+  <p *ngIf="!description.valid">Krivi unos!</p>
+  <p>Cijena:</p>
+  <input type="number" [(ngModel)]="product.price" name="price" #price="ngModel" min="10" max="100"/>
+  <p *ngIf="!price.valid">Krivi unos!</p>
+  <br>
+  <input type="submit" value="Spremi" [disabled]="productForm.invalid" (click)="save()"/>
+</form>
+
+<pre>
+  {{ product | json}}
+</pre>

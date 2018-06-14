@@ -1,0 +1,12 @@
+<form #userForm="ngForm">
+  <p>Ime:</p>
+  <input type="text" [(ngModel)]="user.name" name="name" #name="ngModel" required />
+  <p class="error" *ngIf="name.invalid">Krivi unos!</p>
+  <p>Datum registracije:</p>
+  <input type="date" [(ngModel)]="user.joinDate" name="joinDate" #joinDate="ngModel" required />
+  <p class="error" *ngIf="joinDate.invalid">Krivi unos!</p>
+  <p>Aktivan:</p>
+  <input type="checkbox" [(ngModel)]="user.active" name="active" #active="ngModel" />
+  <br>
+  <input type="button" value="Spremi" [disabled]="userForm.invalid" (click)="save()" />
+</form>
