@@ -1,0 +1,5 @@
+<div *ngIf="user">
+  <h2>{{ user.name }}</h2>
+  <p>Datum registracije: {{ user.joinDate | date: "dd. MM. yyyy." }}</p>
+  <p>Aktivan: {{ user.active ? "Da" : "Ne" }}</p>
+</div>

@@ -1,0 +1,11 @@
+<h3>
+  <a [routerLink]="['/newUser']">Dodaj novog korisnika</a>
+</h3>
+<ul>
+  <li *ngFor="let user of userList">
+    <h3>
+      <a [routerLink]="['/user', user.id]">{{ user.name }}</a>
+    </h3>
+    <p>Aktivan: {{ user.active ? "Da" : "Ne" }}</p>
+  </li>
+</ul>

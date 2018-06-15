@@ -1,0 +1,9 @@
+<form #loginForm="ngForm">
+  <p>Korisničko ime:</p>
+  <input type="text" [(ngModel)]="username" name="usernameControl" #usernameControl="ngModel" required />
+  <div *ngIf="usernameControl.invalid">
+    <p>Korisničko ime je obavezno polje!</p>
+  </div>
+  <br>
+  <input type="submit" value="Prijavi se" [disabled]="loginForm.invalid" />
+</form>
