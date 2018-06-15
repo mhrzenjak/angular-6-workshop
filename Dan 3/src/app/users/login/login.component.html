@@ -5,5 +5,8 @@
     <p>Korisničko ime je obavezno polje!</p>
   </div>
   <br>
-  <input type="submit" value="Prijavi se" [disabled]="loginForm.invalid" />
+  <input type="submit" value="Prijavi se" [disabled]="loginForm.invalid" (click)="login()" />
+
+  <br>
+  <p *ngIf="error">{{ error }}</p>
 </form>

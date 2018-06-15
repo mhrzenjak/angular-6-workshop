@@ -21,6 +21,8 @@ import { UserInsertComponent } from './users/user-insert/user-insert.component';
 import { NavigationLayoutComponent } from './layouts/navigation-layout/navigation-layout.component';
 import { LoginComponent } from './users/login/login.component';
 import { AuthentificationService } from './shared/authentification.service';
+import { FooterComponent } from './footer/footer.component';
+import { AuthentificationGuard } from './shared/guards/authentification.guard';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { AuthentificationService } from './shared/authentification.service';
     ProductInsertComponent,
     UserInsertComponent,
     NavigationLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { AuthentificationService } from './shared/authentification.service';
       { 
         path: '',
         component: NavigationLayoutComponent,
+        canActivate: [ AuthentificationGuard ],
         children: [
           {
             path: 'productList',
@@ -86,7 +90,8 @@ import { AuthentificationService } from './shared/authentification.service';
   providers: [
     ProductService,
     UserService,
-    AuthentificationService
+    AuthentificationService,
+    AuthentificationGuard
   ],
   bootstrap: [AppComponent],
 })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../../shared/authentification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,17 +10,24 @@ import { AuthentificationService } from '../../shared/authentification.service';
 export class LoginComponent implements OnInit {
 
   username: string;
+  error: string;
 
-  constructor(private auth: AuthentificationService) { }
+  constructor(
+    private auth: AuthentificationService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.username = '';
   }
 
   login(): void {
-    let success: boolean;
-
-    this.auth.login(this.username);
+    this.auth.login(this.username).subscribe(value => {
+      if (value){
+        this.router.navigate(['/productList']);
+      }
+      this.error = "Korisnik ne postoji!";
+    });
   }
 
 }
