@@ -25,6 +25,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthentificationGuard } from './shared/guards/authentification.guard';
 import { AuthorizationGuard } from './shared/guards/authorization.guard';
 import { RolesEnum } from './shared/roles.enum';
+import { InvertedLayoutComponent } from './layouts/inverted-layout/inverted-layout.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { RolesEnum } from './shared/roles.enum';
     UserInsertComponent,
     NavigationLayoutComponent,
     LoginComponent,
-    FooterComponent
+    FooterComponent,
+    InvertedLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -48,46 +50,53 @@ import { RolesEnum } from './shared/roles.enum';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 500 }),
     RouterModule.forRoot([
-      { 
+      {
         path: '',
         component: NavigationLayoutComponent,
-        canActivate: [ AuthentificationGuard ],
+        canActivate: [AuthentificationGuard],
         children: [
           {
             path: 'productList',
             component: ProductListComponent,
-            canActivate: [ AuthorizationGuard ],
-            data: { roles: [ RolesEnum.Administrator, RolesEnum.Korisnik] }
+            canActivate: [AuthorizationGuard],
+            data: { roles: [RolesEnum.Administrator, RolesEnum.Korisnik] }
           },
           {
             path: 'product/:id',
             component: ProductComponent,
-            canActivate: [ AuthorizationGuard ],
-            data: { roles: [ RolesEnum.Administrator, RolesEnum.Korisnik] }
+            canActivate: [AuthorizationGuard],
+            data: { roles: [RolesEnum.Administrator, RolesEnum.Korisnik] }
           },
           {
             path: 'newProduct',
             component: ProductInsertComponent,
-            canActivate: [ AuthorizationGuard ],
-            data: { roles: [ RolesEnum.Administrator ] }
+            canActivate: [AuthorizationGuard],
+            data: { roles: [RolesEnum.Administrator] }
           },
+        ]
+      },
+      {
+        path: '',
+        component: InvertedLayoutComponent,
+        canActivate: [AuthentificationGuard],
+        children: [
           {
             path: 'userList',
             component: UserListComponent,
-            canActivate: [ AuthorizationGuard ],
-            data: { roles: [ RolesEnum.Administrator ] }
+            canActivate: [AuthorizationGuard],
+            data: { roles: [RolesEnum.Administrator] }
           },
           {
             path: 'user/:id',
             component: UserComponent,
-            canActivate: [ AuthorizationGuard ],
-            data: { roles: [ RolesEnum.Administrator ] }
+            canActivate: [AuthorizationGuard],
+            data: { roles: [RolesEnum.Administrator] }
           },
           {
             path: 'newUser',
             component: UserInsertComponent,
-            canActivate: [ AuthorizationGuard ],
-            data: { roles: [ RolesEnum.Administrator ] }
+            canActivate: [AuthorizationGuard],
+            data: { roles: [RolesEnum.Administrator] }
           },
         ]
       },

@@ -14,7 +14,7 @@ export class AuthentificationGuard implements CanActivate{
 
         let user = this.auth.getUserInfo();
 
-        if(user){
+        if(user && user.active){
             return true;
         }
 

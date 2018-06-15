@@ -26,7 +26,9 @@ export class LoginComponent implements OnInit {
       if (value){
         this.router.navigate(['/productList']);
       }
-      this.error = "Korisnik ne postoji!";
+      else{
+        this.error = "Korisnik ne postoji!";
+      }
     });
   }
 
