@@ -3,11 +3,15 @@ import { User } from "../users/user/user.model";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthentificationService {
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private router: Router
+    ) { }
     
     userList: Array<User>;
 
@@ -33,5 +37,10 @@ export class AuthentificationService {
         let user = JSON.parse(sessionStorage.getItem('user')) as User;
 
         return user;
+    }
+
+    logout(): void {
+        sessionStorage.removeItem('user');
+        this.router.navigate(['/login']);
     }
 }

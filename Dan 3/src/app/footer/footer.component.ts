@@ -17,4 +17,8 @@ export class FooterComponent implements OnInit {
     this.user = this.auth.getUserInfo();
   }
 
+  logout(): void{
+    this.auth.logout();
+  }
+
 }

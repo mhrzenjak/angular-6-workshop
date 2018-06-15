@@ -23,6 +23,8 @@ import { LoginComponent } from './users/login/login.component';
 import { AuthentificationService } from './shared/authentification.service';
 import { FooterComponent } from './footer/footer.component';
 import { AuthentificationGuard } from './shared/guards/authentification.guard';
+import { AuthorizationGuard } from './shared/guards/authorization.guard';
+import { RolesEnum } from './shared/roles.enum';
 
 
 @NgModule({
@@ -53,27 +55,39 @@ import { AuthentificationGuard } from './shared/guards/authentification.guard';
         children: [
           {
             path: 'productList',
-            component: ProductListComponent
+            component: ProductListComponent,
+            canActivate: [ AuthorizationGuard ],
+            data: { roles: [ RolesEnum.Administrator, RolesEnum.Korisnik] }
           },
           {
             path: 'product/:id',
-            component: ProductComponent
+            component: ProductComponent,
+            canActivate: [ AuthorizationGuard ],
+            data: { roles: [ RolesEnum.Administrator, RolesEnum.Korisnik] }
           },
           {
             path: 'newProduct',
-            component: ProductInsertComponent
+            component: ProductInsertComponent,
+            canActivate: [ AuthorizationGuard ],
+            data: { roles: [ RolesEnum.Administrator ] }
           },
           {
             path: 'userList',
-            component: UserListComponent
+            component: UserListComponent,
+            canActivate: [ AuthorizationGuard ],
+            data: { roles: [ RolesEnum.Administrator ] }
           },
           {
             path: 'user/:id',
-            component: UserComponent
+            component: UserComponent,
+            canActivate: [ AuthorizationGuard ],
+            data: { roles: [ RolesEnum.Administrator ] }
           },
           {
             path: 'newUser',
-            component: UserInsertComponent
+            component: UserInsertComponent,
+            canActivate: [ AuthorizationGuard ],
+            data: { roles: [ RolesEnum.Administrator ] }
           },
         ]
       },
@@ -91,7 +105,8 @@ import { AuthentificationGuard } from './shared/guards/authentification.guard';
     ProductService,
     UserService,
     AuthentificationService,
-    AuthentificationGuard
+    AuthentificationGuard,
+    AuthorizationGuard
   ],
   bootstrap: [AppComponent],
 })
